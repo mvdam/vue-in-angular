@@ -1,0 +1,23 @@
+ul {
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 2rem;
+  background-color: #1e1e1e;
+  border-radius: 1rem;
+
+  li {
+    list-style: none;
+
+    a {
+      text-transform: uppercase;
+      text-decoration: none;
+      color: white;
+
+      &.active {
+        font-weight: bold;
+        color: red;
+      }
+    }
+  }
+}

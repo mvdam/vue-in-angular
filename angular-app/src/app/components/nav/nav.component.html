@@ -1,0 +1,7 @@
+<ul>
+  @for (route of routes; track route.path) {
+    <li>
+      <a [routerLink]="[route.path]" routerLinkActive="active">{{ route.title }}</a>
+    </li>
+  }
+</ul>
