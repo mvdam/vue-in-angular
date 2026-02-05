@@ -1,4 +1,17 @@
 <div class="card">
   <h1>VueJS</h1>
   <p>On this route we would like to render our VueJS app.</p>
+
+  <button type="button" (click)="addObjectId()">Add objectId</button>
+
+  @if (blob(); as blob) {
+    <div class="card">Received blob from Vue: {{ blob | json }}</div>
+  }
+</div>
+
+<div class="card">
+  <my-vue-web-comp
+    [objectIds]="objectIds()"
+    (publishFile)="onPublishFile($event)"
+  ></my-vue-web-comp>
 </div>

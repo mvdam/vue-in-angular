@@ -1,13 +1,49 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>AngularApp</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>AngularApp</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+    <!-- Vue code -->
+    <script src="https://unpkg.com/vue@latest"></script>
+    <script>
+      const MyVueWebComp = Vue.defineCustomElement({
+        props: ['objectIds'],
+        template: `
+          <div style="border: 3px dashed green; padding: 5px">
+            <h3>Received uuids in Vue</h3>
+            <ul>
+              <li v-for="id in objectIds">
+                {{ id }}
+              </li>
+            </ul>
+            <input type="button" @click="notifyAngular" value="Send Blob to Angular" />
+          </div>
+        `,
+        data() {
+          return {};
+        },
+        methods: {
+          notifyAngular() {
+            const blob = new Blob([], { type: 'text/plain' });
+            this.$el.dispatchEvent(
+              new CustomEvent('publishFile', {
+                detail: blob,
+                bubbles: true,
+                composed: true,
+              }),
+            );
+          },
+        },
+      });
+      customElements.define('my-vue-web-comp', MyVueWebComp);
+    </script>
+    <!-- End of Vue code -->
+  </head>
+  <body>
+    <app-root></app-root>
+  </body>
 </html>
