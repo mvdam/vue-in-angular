@@ -12,6 +12,6 @@ export const routes: Routes = [
   {
     path: 'vue',
     component: VueComponent,
-    title: 'Vue',
+    title: 'Vue (embedded)',
   },
 ];
